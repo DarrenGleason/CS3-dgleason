@@ -2,7 +2,9 @@
     9/5/2019
     Darren Gleason
     Falling Apart - Kattis Problem - Difficulty 1.7
-    --- Separates a list of integers, from a vector, to be put into two summations. ALways choosing the biggest number until no more numbers are gone. Ex: [4, 5, 6] a = 6, b = 5, a = 6 + 4; so on and so forth, determined by the size of the vector. This program also sorts the vector from largest to smallest, then takes the first integer in the sequence.
+    --- Separates a list of integers, from a vector, to be put into two summations. ALways choosing the biggest number until no more 
+    numbers are gone. Ex: [4, 5, 6] a = 6, b = 5, a = 6 + 4; so on and so forth, determined by the size of the vector. This program also 
+    sorts the vector from largest to smallest, then takes the first integer in the sequence.
 */
 
 #include <iostream>
