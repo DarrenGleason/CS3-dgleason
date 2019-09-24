@@ -10,7 +10,7 @@
     -Total points = 100
     -I have also attached the example words I used, under somewords.txt
 
-#3. CD
+# 3. CD
     -Solved using Vector and Set_intersection and the solution not accepted yet
     -Wrote and tested 3 test cases (3*10 = 30 poits)
     -Screenshot is in the file cd.jpg (10 points)
