@@ -12,6 +12,6 @@
 
 #3. CD
     -Solved using Vector and Set_intersection and the solution not accepted yet
-Wrote and tested 3 test cases (3*10 = 30 poits)
+    -Wrote and tested 3 test cases (3*10 = 30 poits)
     -Screenshot is in the file cd.jpg (10 points)
     -Total points = 100
