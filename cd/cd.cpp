@@ -2,7 +2,7 @@
     9/8/2019
     Darren Gleason
     CD - Kattis Problem - Difficulty 4.3
-    --- Takes an input and determines how many CDs to get rid of.
+    --- Takes an input and determines how many CDs to get rid of based on the shared CD's.
 */
 
 #include <iostream>
