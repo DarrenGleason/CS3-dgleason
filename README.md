@@ -15,3 +15,8 @@
     -Wrote and tested 3 test cases (3*10 = 30 poits)
     -Screenshot is in the file cd.jpg (10 points)
     -Total points = 100
+# 4. Putovanje
+    -Solved using a nested for loop, along with the max operator found in the algorithm library
+    -Wrote and tested 3 test cases (3*10 = 30)
+    -Screenshot is in the fild putovanje.jpg (10 points)
+    -Total points = 100
