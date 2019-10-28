@@ -24,3 +24,9 @@
     -Wrote and tested 3 test cases (3*10 = 30)
     -Screenshot is in the file icpc.jpg (10 points)
     -Total points = 100
+# 6. BST
+    -Solved with bst implementation, all readme's fixed (40 points)
+    -Menu option has been provided, allows read in from text file (20 points)
+    -Menu option to display all word in postorder, preorder, and inorder with frequencies (10 points)
+    -Menu option provided to delete a node (10 points)
+    -Total points = 90

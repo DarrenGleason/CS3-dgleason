@@ -38,6 +38,10 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "cassert": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp"
     }
 }
