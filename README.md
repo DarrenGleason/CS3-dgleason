@@ -30,3 +30,8 @@
     -Menu option to display all word in postorder, preorder, and inorder with frequencies (10 points)
     -Menu option provided to delete a node (10 points)
     -Total points = 90
+# 7. Graphs-SSSP
+    -Solved with Dijkstra algorthim and graph from Jupyter Notebook (65 points)
+    -Wrote and tested 3 test casses (3*10 = 30)
+    -Screenshot is in the file shortestpath1.jpg (5 points)
+    -Total points = 100

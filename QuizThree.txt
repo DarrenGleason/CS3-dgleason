@@ -1,0 +1,86 @@
+Tree Data Structure
+	- Tree DS structure in general enavle efficient access and efficient update to large 		collections of data
+Binary Search Tree
+	-Preorder
+		*visit node
+		*preorder left subtree
+		*preorder right subtree
+	-Inorder
+		*inorder left subtree
+		*visit node
+		*inorder right subtree
+	-Postorder
+		*postorder left subtree
+		*postorder right subtree
+		*visit node
+	-Full and Complete Binary Tree
+		*Complete is a wider word than Full, therefore usually complete is wider
+	-BST Search Algorithm
+		*If the key, K, is found at the current node, return the node
+		*If the key, K, is less than the key stored in the node, recursively search in the 		left subtree
+		*If the key, K, is greater than the key stored in the node, recursively search in 		the right subtree
+		*If the key is not found, return NULL
+	-BST Insert Algorithm
+		*Handle duplicate: depending on application, either ignore or insert the left 		subtree
+		*Find where the new node with given K will go
+			#Insert at the location maintaining BST
+	-BST Remove
+		*Remove a node with given key K
+		*A bit tricky!
+		*Four Cases:
+			1.If the node is a leaf node, simply delete it
+			2.If the node has one child (right or left), make the child new child of 			it's parent
+			3.If the node has two children:
+				#Find and copy the data of the min node on its right subtree to 				the node you're deleting
+				#Remove the node with the duplicate value in the right subtree
+
+Heaps-PriorityQueues
+	-In real-life and in computing applications, we may have to choose the next "most 	important" from a collection of people, tasks, or objects
+		#Doctors in a hospital emergency room often choose to see next "most critical" 		patient
+		#Operating systems picks programs (jobs) with the highext priority
+	-When collection of objects is organized by impotance or priority, we call this a priority 	queue
+		#Normal queue is not efficient as it takes Theta(n) time to search for the next 		highest priority element
+	-How should we effectively represent priority queue
+		#A list whether sorted or not, will require Theta(n) time for either insertion or 		removal
+		#BST would require Theta(nlogn) time in the average case; however BST can become 		unbalanced leading to bad performance
+	-Heap
+		#Heap data structure is used to represent priority queues
+		#Heap is also the name for a memory segment (free store)
+		#Two Properties:
+			1.It is a complete binary tree
+				$Heaps are nearly always implemeted using the array representation
+			2.The values stored in a heap data structure are partially ordered
+				$There's a relationship between the value stored at any node and 				the values of its children
+				$No relationship between the siblings (unlike BST)
+		#Two types of heap:
+			1.Max heap
+				$Every node stores a value that is GREATER than or equal to the 				value of either of its children
+				$By its definition, root stores the minimum of all values in the 				tree
+			2.Min heap
+				$Every node stores a value that is LESS than or equal to the value 				of either of its children
+				$By its definition, root stores the minimum of all values in the 					tree
+		#Heapsort uses max heap
+		#Replacement Selection algorithm used for external sorting uses a min heap
+	-Push Heap
+		#Heap can be built by pushing one element at a time
+		#algorithm steps:
+			1.First copy the data, V at the last index
+			2.Move V to the right place by comparing to its parent's value
+				$If the value of V is less than or equal to the value of its 				parent, it is in the correct position
+				$If the value of V is greater than that of its parent, the two 						elements swap positions
+				$Repeat 2 until V reaches correct position
+		#Running time complexity:
+			$Since the height of a complete binary tree with n nodes is (logn), each 			call to push takes O(logn) time in the worst case, (move from the bottom 			to the top)
+			$so, takes O(nlogn) time in the worst case
+	-Push Heap Operation
+	-Make Heap
+		#if all n values are availavle at the beginning of the building process, we can 			build the heap faster than just pushing the values into the heap one by one
+	-Make Heap Operation
+	-Pop Heap
+		#Remove and return the maximum value from the max heap
+		#Algorithm steps:
+			1.Swap the first and last positions
+			2.Decrement the heap size by one
+			3.Since it's no longer a max heap, push the top element down as 			appropriate
+			4.Return the max element
+		#Because the heap is logn levels deep, the cost of deleting the maximum element 		Theta(logn) is the average and worst cases
