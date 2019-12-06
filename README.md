@@ -36,10 +36,10 @@
     -Screenshot is in the file shortestpath1.jpg (5 points)
     -Total points = 100
 # 8. MST
-    -Solved
-    -Wrote 3 test cases
-    -Screenshot
-    -Total points
+    -Solved the kattis problem with flying colors (85 points)
+    -Did not write 3 test cases 0 points.
+    -Screenshot saved as minspantree.jpg
+    -Total points = 85
 # 9. FINAL
     -Solved with 9 sort functions and three search algorithms ()
     -stuff
