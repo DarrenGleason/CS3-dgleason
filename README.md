@@ -35,3 +35,13 @@
     -Wrote and tested 3 test casses (3*10 = 30)
     -Screenshot is in the file shortestpath1.jpg (5 points)
     -Total points = 100
+# 8. MST
+    -Solved
+    -Wrote 3 test cases
+    -Screenshot
+    -Total points
+# 9. FINAL
+    -Solved with 9 sort functions and three search algorithms ()
+    -stuff
+    -stuff
+    -stuff

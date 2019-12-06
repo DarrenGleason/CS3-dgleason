@@ -6,8 +6,67 @@
 #include <fstream>
 #include <vector>
 #include <iomanip>
+#include <cstdlib>
+#include <iterator>
+#include <functional>
+#include <cstdio>
 
 using namespace std;
+
+template<class T>
+struct Node {
+    T data;
+    Node<T>* lTree;
+    Node<T>* rTree;
+};
+
+template<class T>
+class BST
+{
+  private:
+    Node<T> *root;
+    int nodeCount;
+    
+    Node<T>* find(Node<T> *p, const T& K) const {
+        if (p == nullptr) return nullptr;
+        if (K == p->data)
+            return p;
+        else if (K < p->data)
+            return find(p->lTree, K);
+        else 
+            return find(p->rTree, K);
+    }
+    
+    void insert(Node<T>* &p, Node<T> *newNode) {
+        if (p == nullptr) {
+            p = newNode;
+            this->nodeCount++;
+        }
+        else {
+            if (newNode->data <= p->data)
+                insert(p->lTree, newNode);
+            else
+                insert(p->rTree, newNode);
+        }
+    }
+    
+  public:
+    BST() {
+        this->root = nullptr;
+        this->nodeCount = 0;
+    }
+
+    Node<T>* find(const T& key) {
+        return find(this->root, key);
+    }
+    void insert(const T& key) {
+        Node<T> *node = new Node<T>;
+        node->data = key;
+        node->lTree = nullptr;
+        node->rTree = nullptr;
+        insert(this->root, node);
+    }
+};
 
 void five()
 {
@@ -17,7 +76,7 @@ void five()
     myfile.open("five.txt", ofstream::out | ofstream::trunc);
     if(myfile.is_open()){
         for (int i = 0; i < 5000; i++){
-            value = rand() % 100 + 1;
+            value = rand() % 5000 + 1;
             myfile << value << " ";
         }
         myfile.close();
@@ -87,6 +146,7 @@ vector<int> readinfive()
     vector<int> temp;
     int number, i;
     infile.open("five.txt");
+    infile.clear();
     while(infile >> number){
         temp.push_back(number);
     }
@@ -99,6 +159,7 @@ vector<int> readinonehund()
     vector<int> temp;
     int number, i;
     infile.open("onehund.txt");
+    infile.clear();
     while(infile >> number){
         temp.push_back(number);
     }
@@ -111,6 +172,7 @@ vector<int> readinfivehund()
     vector<int> temp;
     int number, i;
     infile.open("fivehund.txt");
+    infile.clear();
     while(infile >> number){
         temp.push_back(number);
     }
@@ -123,6 +185,7 @@ vector<int> readinonemil()
     vector<int> temp;
     int number, i;
     infile.open("onemil.txt");
+    infile.clear();
     while(infile >> number){
         temp.push_back(number);
     }
@@ -147,16 +210,13 @@ void bubbleSort(vector<int>& s)
 
 void selectionSort(vector<int>& s)
 {
-    // One by one move boundary of unsorted subarray  
     for (int i = 0; i < s.size(); i++){  
-        // Find the minimum element in unsorted array  
         int min = i;  
         for (int j = i+1; j < s.size(); j++){
             if (s.at(j) < s.at(min)) {
                 min = j;  
             }
         }
-        // Swap the found minimum element with the first element  
         swap(s.at(min), s.at(i));  
     }
 }
@@ -165,12 +225,9 @@ void insertionSort(vector<int>& s)
 {
     for (auto i = s.begin(); i != s.end(); i++) 
     {         
-        // Searching the upper bound, i.e., first  
-        // element greater than *it from beginning 
         auto const insertion_point =  
                 upper_bound(s.begin(), i, *i); 
           
-        // Shifting the unsorted part 
         rotate(insertion_point, i, i+1);         
     } 
 }
@@ -179,23 +236,13 @@ void shellSort(vector<int>& s)
 {
     for (int gap = s.size()/2; gap > 0; gap /= 2) 
     { 
-        // Do a gapped insertion sort for this gap size. 
-        // The first gap elements a[0..gap-1] are already in gapped order 
-        // keep adding one more element until the entire array is 
-        // gap sorted  
         for (int i = gap; i < s.size(); i += 1) 
         { 
-            // add a[i] to the elements that have been gap sorted 
-            // save a[i] in temp and make a hole at position i 
             int temp = s.at(i); 
-  
-            // shift earlier gap-sorted elements up until the correct  
-            // location for a[i] is found 
             int j;             
             for (j = i; j >= gap && s.at(j - gap) > temp; j -= gap){
                 s.at(j) = s.at(j - gap); 
             }
-            //  put temp (the original a[i]) in its correct location 
             s.at(j) = temp; 
         } 
     } 
@@ -237,23 +284,14 @@ void merge(std::vector<int> &arr, int start, int middle, int end) {
     std::vector<int> leftArray(middle - start + 1);
     std::vector<int> rightArray(end - middle);
 
-    // fill in left array
     for (int i = 0; i < leftArray.size(); ++i)
         leftArray[i] = arr[start + i];
 
-    // fill in right array
     for (int i = 0; i < rightArray.size(); ++i)
         rightArray[i] = arr[middle + 1 + i];
 
-    /* Merge the temp arrays */
-
-    // initial indexes of first and second subarrays
     int leftIndex = 0, rightIndex = 0;
-
-    // the index we will start at when adding the subarrays back into the main array
     int currentIndex = start;
-
-    // compare each index of the subarrays adding the lowest value to the currentIndex
     while (leftIndex < leftArray.size() && rightIndex < rightArray.size()) {
         if (leftArray[leftIndex] <= rightArray[rightIndex]) {
             arr[currentIndex] = leftArray[leftIndex];
@@ -265,65 +303,56 @@ void merge(std::vector<int> &arr, int start, int middle, int end) {
         currentIndex++;
     }
 
-    // copy remaining elements of leftArray[] if any
     while (leftIndex < leftArray.size()) arr[currentIndex++] = leftArray[leftIndex++];
 
-    // copy remaining elements of rightArray[] if any
     while (rightIndex < rightArray.size()) arr[currentIndex++] = rightArray[rightIndex++];
 }
 
 void mergeSort(std::vector<int> &arr, int start, int end) {
-    // base case
     if (start < end) {
-        // find the middle point
         int middle = (start + end) / 2;
 
-        mergeSort(arr, start, middle); // sort first half
-        mergeSort(arr, middle + 1, end);  // sort second half
-
-        // merge the sorted halves
+        mergeSort(arr, start, middle);
+        mergeSort(arr, middle + 1, end);
         merge(arr, start, middle, end);
     }
 }
 
-void heapify(vector<int> s, int n, int i) 
-{ 
-    int largest = i; // Initialize largest as root 
-    int l = 2 * i + 1; // left = 2*i + 1 
-    int r = 2 * i + 2; // right = 2*i + 2 
-  
-    // If left child is larger than root 
-    if (l < n && s.at(l) > s.at(largest)) 
-        largest = l; 
-  
-    // If right child is larger than largest so far 
-    if (r < n && s.at(r) > s.at(largest)) 
-        largest = r; 
-  
-    // If largest is not root 
-    if (largest != i) { 
-        swap(s.at(i), s.at(largest)); 
-  
-        // Recursively heapify the affected sub-tree 
-        heapify(s, n, largest); 
-    } 
-} 
+void heapify(std::vector<int> &s, int size, int i) {
+    int max = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
 
-void heapSort(vector<int> s, int n) 
-{ 
-    // Build heap (rearrange array) 
-    for (int i = n/2-1; i >= 0; i--) 
-        heapify(s, n, i); 
-  
-    // One by one extract an element from heap 
-    for (int i = n - 1; i >= 0; i--) { 
-        // Move current root to end 
-        swap(s.at(0), s.at(i)); 
-  
-        // call max heapify on the reduced heap 
-        heapify(s, i, 0); 
-    } 
-} 
+    if (left < size && s[left] > s[max])
+        max = left;
+
+    if (right < size && s[right] > s[max])
+        max = right;
+
+    if (max != i) {
+        int temp = s[i];
+        s[i] = s[max];
+        s[max] = temp;
+
+        heapify(s, size, max);
+    }
+}
+
+void heapSort(vector<int> &s) {
+    int size = s.size();
+
+    for (int i = size / 2 - 1; i >= 0; i--) {
+        heapify(s, size, i);
+    }
+
+    for (int i = size - 1; i >= 0; i--) {
+        int temp = s[0];
+        s[0] = s[i];
+        s[i] = temp;
+
+        heapify(s, i, 0);
+    }
+}
 
 void printVector(vector<int> a)
 {
@@ -332,43 +361,83 @@ void printVector(vector<int> a)
     }
 }
 
-void timeBubbleSort(vector<int> sort)
+int sequentialSearch(const vector<int> & v, int key) {
+    int index = 0;
+    while (index < v.size()) {
+        if (v[index] == key)
+            return index;
+        else
+            index ++;
+    }
+    return -1;
+}
+
+int binarySearch(const vector<int> &v, int key) {
+    int low = 0;
+    int high = v.size()-1;
+    while (low <= high) { 
+        int mid = (low+high)/2;
+        if (v[mid] == key) 
+            return mid;
+        else if (v[mid] > key) 
+            high = mid - 1;
+        else 
+            low = mid + 1;
+    }
+    return -1;
+}
+
+Node<int> *binarySearchTree(BST<int> &tree, int key, Node<int> *n)
+{
+    n = tree.find(key);
+    return n;
+}
+
+void timeBubbleSort(vector<int> sort, vector<float>& sortWriter, ofstream& outfile)
 {
     clock_t time;
     time = clock();
     bubbleSort(sort);
     time = clock() - time;
-    cout << "\nIt took " << (float)time/CLOCKS_PER_SEC << " second(s) to bubble sort the vector." << endl;
+    float timer = (float)time/CLOCKS_PER_SEC;
+    sortWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to bubble sort the vector.\n";
 }
 
-void timeSelectionSort(vector<int> sort)
+void timeSelectionSort(vector<int> sort, vector<float>& sortWriter, ofstream& outfile)
 {
     clock_t time;
     time = clock();
     selectionSort(sort);
     time = clock() - time;
-    cout << "\nIt took " << (float)time/CLOCKS_PER_SEC << " second(s) to selection sort the vector." << endl;
+    float timer = (float)time/CLOCKS_PER_SEC;
+    sortWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to selection sort the vector.\n";
 }
 
-void timeInsertionSort(vector<int> sort)
+void timeInsertionSort(vector<int> sort, vector<float>& sortWriter, ofstream& outfile)
 {
     clock_t time;
     time = clock();
     insertionSort(sort);
     time = clock() - time;
-    cout << "\nIt took " << (float)time/CLOCKS_PER_SEC << " second(s) to insertion sort the vector." << endl;
+    float timer = (float)time/CLOCKS_PER_SEC;
+    sortWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to insertion sort the vector.\n";
 }
 
-void timeShellSort(vector<int> sort)
+void timeShellSort(vector<int> sort, vector<float>& sortWriter, ofstream& outfile)
 {
     clock_t time;
     time = clock();
     shellSort(sort);
     time = clock() - time;
-    cout << "\nIt took " << (float)time/CLOCKS_PER_SEC << " second(s) to shellsort the vector." << endl;
+    float timer = (float)time/CLOCKS_PER_SEC;
+    sortWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to shell sort the vector.\n";
 }
 
-void timeQuickSort(vector<int> sort)
+void timeQuickSort(vector<int> sort, vector<float>& sortWriter, ofstream& outfile)
 {
     int low = 0;
     int high = sort.size() - 1;
@@ -376,10 +445,12 @@ void timeQuickSort(vector<int> sort)
     time = clock();
     quickSort(sort, low, high);
     time = clock() - time;
-    cout << "\nIt took " << (float)time/CLOCKS_PER_SEC << " second(s) to quicksort the vector." << endl;
+    float timer = (float)time/CLOCKS_PER_SEC;
+    sortWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to quick sort the vector.\n";
 }
 
-void timeMergeSort(vector<int> sort)
+void timeMergeSort(vector<int> sort, vector<float>& sortWriter, ofstream& outfile)
 {
     int low = 0;
     int high = sort.size() - 1;
@@ -387,40 +458,198 @@ void timeMergeSort(vector<int> sort)
     time = clock();
     mergeSort(sort, low, high);
     time = clock() - time;
-    cout << "\nIt took " << (float)time/CLOCKS_PER_SEC << " second(s) to merge sort the vector." << endl;
+    float timer = (float)time/CLOCKS_PER_SEC;
+    sortWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to merge sort the vector.\n";
 }
 
-void timeHeapSort(vector<int> sort)
+void timeHeapSort(vector<int> sort, vector<float>& sortWriter, ofstream& outfile)
 {
     clock_t time;
-    int n = sizeof(sort)/sizeof(sort.at(0));
-    cout << sizeof(sort) << " " << sizeof(sort.at(0)) << " " << sizeof(sort)/sizeof(sort.at(0)) << " Yeah" << endl;
     time = clock();
-    heapSort(sort, n);
+    heapSort(sort);
     time = clock() - time;
-    cout << "\nIt took " << (float)time/CLOCKS_PEeR_SEC << " second(s) to heap sort the vector." << endl;
-    printVector(sort);
+    float timer = (float)time/CLOCKS_PER_SEC;
+    sortWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to heap sort the vector.\n";
+}
+void timeSort(vector<int> mysort, vector<float>& sortWriter, ofstream& outfile)
+{
+    clock_t time;
+    time = clock();
+    sort(mysort.begin(), mysort.end());
+    time = clock() - time;
+    float timer = (float)time/CLOCKS_PER_SEC;
+    sortWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to algorithm sort the vector.\n";
+}
+
+void timeStableSort(vector<int> mysort, vector<float>& sortWriter, ofstream& outfile)
+{
+    clock_t time;
+    time = clock();
+    stable_sort(mysort.begin(), mysort.end());
+    time = clock() - time;
+    float timer = (float)time/CLOCKS_PER_SEC;
+    sortWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to algorithm stable sort the vector.\n";
+}
+
+void timeSequentialSearch(vector<int>& sort, int key, vector<float>& searchWriter, ofstream& outfile)
+{
+    clock_t sec;
+    if(key == 0) {
+        key = 1;
+    }
+    sec = clock();
+    int searchIndex = sequentialSearch(sort, key);
+    sec = clock() - sec;
+    float timer = (float)sec/CLOCKS_PER_SEC;
+    searchWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to sequential search for the key.\n";
+}
+
+void timeBinarySearch(vector<int>& mysort, int key, vector<float>& searchWriter, ofstream& outfile)
+{
+    clock_t sec;
+    if(key == 0) {
+        key = 1;
+    }
+    sort(mysort.begin(), mysort.end());
+    sec = clock();
+    int searchIndex = binarySearch(mysort, key);
+    sec = clock() - sec;
+    float timer = (float)sec/CLOCKS_PER_SEC;
+    searchWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to binary search for the key.\n";
+}
+
+void timeBinarySearchTree(vector<int>& mysort, int key, vector<float>& searchWriter, ofstream& outfile)
+{
+    sort(mysort.begin(), mysort.end());
+    BST<int> tree;
+    for(int i=0; i < mysort.size(); i++) {
+        tree.insert(mysort.at(i));
+    }
+    Node<int> *n;
+    clock_t sec;
+    if(key == 0) {
+        key = 1;
+    }
+    sort(mysort.begin(), mysort.end());
+    sec = clock();
+    Node<int> *searchIndex = binarySearchTree(tree, key, n);
+    sec = clock() - sec;
+    float timer = (float)sec/CLOCKS_PER_SEC;
+    searchWriter.push_back(timer);
+    outfile << "    It took " << timer << " second(s) to binary tree search for the key.\n";
 }
 
 int main()
 {
-    // reading random numbers into a file
-    five();
-    onehund();
-    fivehund();
-    onemil();
-    // reading the file into a vector
-    vector<int> vecfive = readinfive(); // test vector, so i can see a representation of time...
-    vector<int> vecOM = readinonemil();
-    vector<int> vecFH = readinfivehund();
-    vector<int> vecOH = readinonehund();
+    ios::sync_with_stdio(false);
+    srand(time(NULL));
+    ofstream outfile;
+    outfile.open("timeComplexity.txt");
+    outfile.clear();
+    //vector<float> averageOH, averageFH, averageOM;
 
-    timeBubbleSort(vecfive);
-    timeSelectionSort(vecfive);
-    timeInsertionSort(vecfive);
-    timeShellSort(vecfive);
-    timeQuickSort(vecfive);
-    timeMergeSort(vecfive);
-    timeHeapSort(vecfive);
+
+    // vector<float> searchWriter, searchWriter, searchWriter;
+    // vector<float> sortWriter, sortWriter, sortWriter;
+    // float averageSortOH, averageSortFH, averageSortOM, addSortOH, addSortFH, addSortOM, averageSearchOH, averageSearchFH, averageSearchOM, addSearchOH, addSearchFH, addSearchOM;
+
+    for(int j = 0; j < 3; j++) {
+        vector<float> searchWriter, sortWriter;
+        vector<int> vec;
+        int key;
+        outfile << j << endl;
+        if(j != 1 && j != 2) {
+            outfile << "100000 Values:" <<  endl;
+            for(int i = 0; i < 10; i++) {
+                outfile << "    Run number " << i + 1 << ":" << endl;
+                onehund();
+                vec = readinonehund();
+                key = rand()%100 + 1;
+                timeBubbleSort(vec, sortWriter, outfile);
+                timeSelectionSort(vec, sortWriter, outfile);
+                timeInsertionSort(vec, sortWriter, outfile);
+                timeShellSort(vec, sortWriter, outfile);
+                timeQuickSort(vec, sortWriter, outfile);
+                timeMergeSort(vec, sortWriter, outfile);
+                timeHeapSort(vec, sortWriter, outfile);
+                timeSort(vec, sortWriter, outfile);
+                timeStableSort(vec, sortWriter, outfile);
+                timeSequentialSearch(vec, key, searchWriter, outfile);
+                timeBinarySearch(vec, key, searchWriter, outfile);
+                timeBinarySearchTree(vec, key, searchWriter, outfile);
+            }
+        }
+        else if(j != 0 && j != 2) {
+            outfile << "500000 Values:" << endl;
+            for(int i = 0; i < 10; i++) {
+                outfile << "    Run number " << i + 1 << ":" << endl;
+                fivehund();
+                vec = readinfivehund();
+                key = rand()%100 + 1;
+                timeBubbleSort(vec, sortWriter, outfile);
+                timeSelectionSort(vec, sortWriter, outfile);
+                timeInsertionSort(vec, sortWriter, outfile);
+                timeShellSort(vec, sortWriter, outfile);
+                timeQuickSort(vec, sortWriter, outfile);
+                timeMergeSort(vec, sortWriter, outfile);
+                timeHeapSort(vec, sortWriter, outfile);
+                timeSort(vec, sortWriter, outfile);
+                timeStableSort(vec, sortWriter, outfile);
+                timeSequentialSearch(vec, key, searchWriter, outfile);
+                timeBinarySearch(vec, key, searchWriter, outfile);
+                timeBinarySearchTree(vec, key, searchWriter, outfile);
+
+            }
+        }
+        else if(j != 0 && j != 1) {
+            outfile << "1000000 Values:" << endl;
+            for(int i = 0; i < 10; i++) {
+                outfile << "    Run number " << i + 1 << ":" << endl;
+                onemil();
+                vec = readinonemil();
+                key = rand()%100 + 1;
+                timeBubbleSort(vec, sortWriter, outfile);
+                timeSelectionSort(vec, sortWriter, outfile);
+                timeInsertionSort(vec, sortWriter, outfile);
+                timeShellSort(vec, sortWriter, outfile);
+                timeQuickSort(vec, sortWriter, outfile);
+                timeMergeSort(vec, sortWriter, outfile);
+                timeHeapSort(vec, sortWriter, outfile);
+                timeSort(vec, sortWriter, outfile);
+                timeStableSort(vec, sortWriter, outfile);
+                timeSequentialSearch(vec, key, searchWriter, outfile);
+                timeBinarySearch(vec, key, searchWriter, outfile);
+                timeBinarySearchTree(vec, key, searchWriter, outfile);
+
+            }
+        }
+        
+    }
+
+    // addSortOH = sortWriter.at(0) + sortWriter.at(1) + sortWriter.at(2) + sortWriter.at(3) + sortWriter.at(4) + sortWriter.at(5) + sortWriter.at(6) + sortWriter.at(7) + sortWriter.at(8);
+    // averageSortOH = addSortOH/9;
+
+    // addSearchOH = searchWriter.at(0) + searchWriter.at(1) + searchWriter.at(2);
+    // averageSearchOH = addSearchOH/3;
+
+    // averageOH.push_back(averageSortOH);
+
+    // outfile << "    The average of the sorting algorithms is " << averageSortOH << ".\n";
+    // outfile << "    The average of the searching algorithms is " << averageSearchOH << ".\n";
+
+    // sort(averageOH.begin(), averageOH.end());
+    // sort(averageFH.begin(), averageFH.end());
+    // sort(averageOM.begin(), averageOM.end());
+
+    // for(int p = 0; p < averageOH.size(); p++) {
+    //     cout << averageOH.at(p) << endl;;
+    // }
+    outfile.close();
     return 0;
 }

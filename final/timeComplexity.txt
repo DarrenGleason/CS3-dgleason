@@ -1,0 +1,135 @@
+0
+100000 Values:
+    Run number 1:
+    It took 342.949 second(s) to bubble sort the vector.
+    It took 218.934 second(s) to selection sort the vector.
+    It took 0.891 second(s) to insertion sort the vector.
+    It took 0.218 second(s) to shell sort the vector.
+    It took 0.047 second(s) to quick sort the vector.
+    It took 0.203 second(s) to merge sort the vector.
+    It took 0.109 second(s) to heap sort the vector.
+    It took 0.063 second(s) to algorithm sort the vector.
+    It took 0.078 second(s) to algorithm stable sort the vector.
+    It took 0 second(s) to sequential search for the key.
+    It took 0 second(s) to binary search for the key.
+    It took 0 second(s) to binary tree search for the key.
+    Run number 2:
+    It took 307.77 second(s) to bubble sort the vector.
+    It took 220.2 second(s) to selection sort the vector.
+    It took 0.891 second(s) to insertion sort the vector.
+    It took 0.187 second(s) to shell sort the vector.
+    It took 0.047 second(s) to quick sort the vector.
+    It took 0.187 second(s) to merge sort the vector.
+    It took 0.094 second(s) to heap sort the vector.
+    It took 0.062 second(s) to algorithm sort the vector.
+    It took 0.078 second(s) to algorithm stable sort the vector.
+    It took 0 second(s) to sequential search for the key.
+    It took 0 second(s) to binary search for the key.
+    It took 0 second(s) to binary tree search for the key.
+    Run number 3:
+    It took 318.356 second(s) to bubble sort the vector.
+    It took 214.463 second(s) to selection sort the vector.
+    It took 0.906 second(s) to insertion sort the vector.
+    It took 0.172 second(s) to shell sort the vector.
+    It took 0.047 second(s) to quick sort the vector.
+    It took 0.187 second(s) to merge sort the vector.
+    It took 0.109 second(s) to heap sort the vector.
+    It took 0.079 second(s) to algorithm sort the vector.
+    It took 0.078 second(s) to algorithm stable sort the vector.
+    It took 0 second(s) to sequential search for the key.
+    It took 0 second(s) to binary search for the key.
+    It took 0 second(s) to binary tree search for the key.
+    Run number 4:
+    It took 314.237 second(s) to bubble sort the vector.
+    It took 220.14 second(s) to selection sort the vector.
+    It took 0.906 second(s) to insertion sort the vector.
+    It took 0.187 second(s) to shell sort the vector.
+    It took 0.032 second(s) to quick sort the vector.
+    It took 0.187 second(s) to merge sort the vector.
+    It took 0.109 second(s) to heap sort the vector.
+    It took 0.078 second(s) to algorithm sort the vector.
+    It took 0.078 second(s) to algorithm stable sort the vector.
+    It took 0 second(s) to sequential search for the key.
+    It took 0 second(s) to binary search for the key.
+    It took 0 second(s) to binary tree search for the key.
+    Run number 5:
+    It took 313.663 second(s) to bubble sort the vector.
+    It took 270.121 second(s) to selection sort the vector.
+    It took 1.388 second(s) to insertion sort the vector.
+    It took 0.298 second(s) to shell sort the vector.
+    It took 0.064 second(s) to quick sort the vector.
+    It took 0.264 second(s) to merge sort the vector.
+    It took 0.188 second(s) to heap sort the vector.
+    It took 0.084 second(s) to algorithm sort the vector.
+    It took 0.15 second(s) to algorithm stable sort the vector.
+    It took 0 second(s) to sequential search for the key.
+    It took 0 second(s) to binary search for the key.
+    It took 0 second(s) to binary tree search for the key.
+    Run number 6:
+    It took 360.045 second(s) to bubble sort the vector.
+    It took 256.264 second(s) to selection sort the vector.
+    It took 0.922 second(s) to insertion sort the vector.
+    It took 0.171 second(s) to shell sort the vector.
+    It took 0.047 second(s) to quick sort the vector.
+    It took 0.188 second(s) to merge sort the vector.
+    It took 0.109 second(s) to heap sort the vector.
+    It took 0.063 second(s) to algorithm sort the vector.
+    It took 0.078 second(s) to algorithm stable sort the vector.
+    It took 0 second(s) to sequential search for the key.
+    It took 0 second(s) to binary search for the key.
+    It took 0 second(s) to binary tree search for the key.
+    Run number 7:
+    It took 312.143 second(s) to bubble sort the vector.
+    It took 214.798 second(s) to selection sort the vector.
+    It took 0.906 second(s) to insertion sort the vector.
+    It took 0.188 second(s) to shell sort the vector.
+    It took 0.047 second(s) to quick sort the vector.
+    It took 0.203 second(s) to merge sort the vector.
+    It took 0.094 second(s) to heap sort the vector.
+    It took 0.062 second(s) to algorithm sort the vector.
+    It took 0.094 second(s) to algorithm stable sort the vector.
+    It took 0 second(s) to sequential search for the key.
+    It took 0 second(s) to binary search for the key.
+    It took 0 second(s) to binary tree search for the key.
+    Run number 8:
+    It took 354.939 second(s) to bubble sort the vector.
+    It took 284.502 second(s) to selection sort the vector.
+    It took 0.985 second(s) to insertion sort the vector.
+    It took 0.218 second(s) to shell sort the vector.
+    It took 0.047 second(s) to quick sort the vector.
+    It took 0.203 second(s) to merge sort the vector.
+    It took 0.125 second(s) to heap sort the vector.
+    It took 0.063 second(s) to algorithm sort the vector.
+    It took 0.093 second(s) to algorithm stable sort the vector.
+    It took 0 second(s) to sequential search for the key.
+    It took 0 second(s) to binary search for the key.
+    It took 0 second(s) to binary tree search for the key.
+    Run number 9:
+    It took 427.146 second(s) to bubble sort the vector.
+    It took 218.186 second(s) to selection sort the vector.
+    It took 0.891 second(s) to insertion sort the vector.
+    It took 0.187 second(s) to shell sort the vector.
+    It took 0.032 second(s) to quick sort the vector.
+    It took 0.187 second(s) to merge sort the vector.
+    It took 0.109 second(s) to heap sort the vector.
+    It took 0.063 second(s) to algorithm sort the vector.
+    It took 0.078 second(s) to algorithm stable sort the vector.
+    It took 0 second(s) to sequential search for the key.
+    It took 0 second(s) to binary search for the key.
+    It took 0 second(s) to binary tree search for the key.
+    Run number 10:
+    It took 349.735 second(s) to bubble sort the vector.
+    It took 263.258 second(s) to selection sort the vector.
+    It took 1 second(s) to insertion sort the vector.
+    It took 0.218 second(s) to shell sort the vector.
+    It took 0.063 second(s) to quick sort the vector.
+    It took 0.218 second(s) to merge sort the vector.
+    It took 0.11 second(s) to heap sort the vector.
+    It took 0.078 second(s) to algorithm sort the vector.
+    It took 0.078 second(s) to algorithm stable sort the vector.
+    It took 0 second(s) to sequential search for the key.
+    It took 0 second(s) to binary search for the key.
+    It took 0 second(s) to binary tree search for the key.
+1
+500000 Values:
+    Run number 1:
