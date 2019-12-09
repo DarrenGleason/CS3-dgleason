@@ -41,7 +41,10 @@
     -Screenshot saved as minspantree.jpg
     -Total points = 85
 # 9. FINAL
-    -Solved with 9 sort functions and three search algorithms ()
-    -stuff
-    -stuff
-    -stuff
+    -Code generates three random lists, 100000, 500000, and 1000000 each run (5 points)
+    -Solved using nine sorting algorithms (9*5 = 45 points)
+    -Sorting algorithms run ten times, using now list every time (15 points)
+    -Solved using three search algorithms (5*3 = 15 points)
+    -Not sure if I solved correctly for the key in the search algorithms (10 points)
+    -Output the times in to a file called timeComplexity.txt (10 points) <--- this probably needs checked, because I was not sure what proper description meant, I just numbered them, one being the fastest and ten being the slowest.s
+    -Total points = 100

@@ -552,25 +552,25 @@ int main()
     ofstream outfile;
     outfile.open("timeComplexity.txt");
     outfile.clear();
-    //vector<float> averageOH, averageFH, averageOM;
+    vector<float> averageOH, averageFH, averageOM, averageOHF, averageFHF, averageOMF, searchWriter, sortWriter;
 
-
-    // vector<float> searchWriter, searchWriter, searchWriter;
-    // vector<float> sortWriter, sortWriter, sortWriter;
-    // float averageSortOH, averageSortFH, averageSortOM, addSortOH, addSortFH, addSortOM, averageSearchOH, averageSearchFH, averageSearchOM, addSearchOH, addSearchFH, addSearchOM;
+    float averageSortOH, averageSortFH, averageSortOM, addSortOH, addSortFH, addSortOM, averageSearchOH, averageSearchFH, averageSearchOM, addSearchOH, addSearchFH, addSearchOM;
 
     for(int j = 0; j < 3; j++) {
         vector<float> searchWriter, sortWriter;
         vector<int> vec;
-        int key;
+        sortWriter.clear();
+        searchWriter.clear();
+        int key = rand()%100 + 1;
         outfile << j << endl;
         if(j != 1 && j != 2) {
             outfile << "100000 Values:" <<  endl;
             for(int i = 0; i < 10; i++) {
                 outfile << "    Run number " << i + 1 << ":" << endl;
+                sortWriter.clear();
+                searchWriter.clear();
                 onehund();
                 vec = readinonehund();
-                key = rand()%100 + 1;
                 timeBubbleSort(vec, sortWriter, outfile);
                 timeSelectionSort(vec, sortWriter, outfile);
                 timeInsertionSort(vec, sortWriter, outfile);
@@ -583,15 +583,37 @@ int main()
                 timeSequentialSearch(vec, key, searchWriter, outfile);
                 timeBinarySearch(vec, key, searchWriter, outfile);
                 timeBinarySearchTree(vec, key, searchWriter, outfile);
+
+                addSortOH = sortWriter.at(0) + sortWriter.at(1) + sortWriter.at(2) + sortWriter.at(3) + sortWriter.at(4) + sortWriter.at(5) + sortWriter.at(6) + sortWriter.at(7) + sortWriter.at(8);
+
+                addSearchOH = searchWriter.at(0) + searchWriter.at(1) + searchWriter.at(2);
+
+                averageSortOH = addSortOH/9;
+
+                averageSearchOH = addSearchOH/3;
+
+                averageOH.push_back(averageSortOH);
+                averageOHF.push_back(averageSearchOH);
+            }
+            sort(averageOH.begin(), averageOH.end());
+            sort(averageOHF.begin(), averageOHF.end());
+            outfile << "Average for 100,000 sorting functions: " << endl;
+            for(int k = 0; k < 10; k++) {
+                outfile << k+1 << ". " << averageOH.at(k) << " seconds." << endl;
+            }
+            outfile << "Average for 100,000 searching functions: " << endl;
+            for(int j = 0; j < 10; j++) {
+                outfile << j+1 << ". " << averageOHF.at(j) << " seconds." << endl;
             }
         }
         else if(j != 0 && j != 2) {
             outfile << "500000 Values:" << endl;
             for(int i = 0; i < 10; i++) {
                 outfile << "    Run number " << i + 1 << ":" << endl;
+                sortWriter.clear();
+                searchWriter.clear();
                 fivehund();
                 vec = readinfivehund();
-                key = rand()%100 + 1;
                 timeBubbleSort(vec, sortWriter, outfile);
                 timeSelectionSort(vec, sortWriter, outfile);
                 timeInsertionSort(vec, sortWriter, outfile);
@@ -605,15 +627,37 @@ int main()
                 timeBinarySearch(vec, key, searchWriter, outfile);
                 timeBinarySearchTree(vec, key, searchWriter, outfile);
 
+                addSortFH = sortWriter.at(0) + sortWriter.at(1) + sortWriter.at(2) + sortWriter.at(3) + sortWriter.at(4) + sortWriter.at(5) + sortWriter.at(6) + sortWriter.at(7) + sortWriter.at(8);
+
+                addSearchFH = searchWriter.at(0) + searchWriter.at(1) + searchWriter.at(2);
+
+                averageSortFH = addSortFH/9;
+
+                averageSearchFH = addSearchFH/3;
+
+                averageFH.push_back(averageSortFH);
+                averageFHF.push_back(averageSearchFH);
+            }
+            sort(averageFH.begin(), averageFH.end());
+            sort(averageFHF.begin(), averageFHF.end());
+
+            outfile << "Average for 500,000 sorting functions: " << endl;
+            for(int k = 0; k < 10; k++) {
+                outfile << k+1 << ". " << averageFH.at(k) << endl;
+            }
+            outfile << "Average for 500,000 searching functions: " << endl;
+            for(int j = 0; j < 10; j++) {
+                outfile << j+1 << ". " << averageFHF.at(j) << endl;
             }
         }
         else if(j != 0 && j != 1) {
             outfile << "1000000 Values:" << endl;
             for(int i = 0; i < 10; i++) {
                 outfile << "    Run number " << i + 1 << ":" << endl;
+                sortWriter.clear();
+                searchWriter.clear();
                 onemil();
                 vec = readinonemil();
-                key = rand()%100 + 1;
                 timeBubbleSort(vec, sortWriter, outfile);
                 timeSelectionSort(vec, sortWriter, outfile);
                 timeInsertionSort(vec, sortWriter, outfile);
@@ -627,29 +671,31 @@ int main()
                 timeBinarySearch(vec, key, searchWriter, outfile);
                 timeBinarySearchTree(vec, key, searchWriter, outfile);
 
+                addSortOM = sortWriter.at(0) + sortWriter.at(1) + sortWriter.at(2) + sortWriter.at(3) + sortWriter.at(4) + sortWriter.at(5) + sortWriter.at(6) + sortWriter.at(7) + sortWriter.at(8);
+
+                addSearchOM = searchWriter.at(0) + searchWriter.at(1) + searchWriter.at(2);
+
+                averageSortOM = addSortOM/9;
+
+                averageSearchOM = addSearchOM/3;
+
+                averageOM.push_back(averageSortOM);
+                averageOMF.push_back(averageSearchOM);
+            }
+            sort(averageOM.begin(), averageOM.end());
+            sort(averageOMF.begin(), averageOMF.end());
+
+            outfile << "Average for 1,000,000 sorting functions: " << endl;
+            for(int k = 0; k < 10; k++) {
+                outfile << k+1 << ". " << averageOM.at(k) << endl;
+            }
+            outfile << "Average for 1,000,000 searching functions: " << endl;
+            for(int j = 0; j < 10; j++) {
+                outfile << j+1 << ". " << averageOMF.at(j) << endl;
             }
         }
-        
     }
 
-    // addSortOH = sortWriter.at(0) + sortWriter.at(1) + sortWriter.at(2) + sortWriter.at(3) + sortWriter.at(4) + sortWriter.at(5) + sortWriter.at(6) + sortWriter.at(7) + sortWriter.at(8);
-    // averageSortOH = addSortOH/9;
-
-    // addSearchOH = searchWriter.at(0) + searchWriter.at(1) + searchWriter.at(2);
-    // averageSearchOH = addSearchOH/3;
-
-    // averageOH.push_back(averageSortOH);
-
-    // outfile << "    The average of the sorting algorithms is " << averageSortOH << ".\n";
-    // outfile << "    The average of the searching algorithms is " << averageSearchOH << ".\n";
-
-    // sort(averageOH.begin(), averageOH.end());
-    // sort(averageFH.begin(), averageFH.end());
-    // sort(averageOM.begin(), averageOM.end());
-
-    // for(int p = 0; p < averageOH.size(); p++) {
-    //     cout << averageOH.at(p) << endl;;
-    // }
     outfile.close();
     return 0;
 }
